@@ -1,0 +1,192 @@
+ 8667  javac -version
+ 9590  javac -version
+ 9764  javac personTester.java 
+ 9765  man javac
+ 9766  javac -version
+ 9769  javac -version
+ 9770  javac personTester.java 
+ 9772  javac personTester.java 
+ 9783  javac personTester.java 
+ 9787  javac personTester.java 
+ 9789  javac personTester.java 
+ 9792  javac personTester.java 
+ 9809  javac personTester.java 
+ 9811  javac personTester.java 
+ 9813  javac personTester.java 
+ 9815  javac personTester.java 
+ 9817  javac personTester.java 
+ 9819  javac personTester.java 
+ 9821  javac personTester.java 
+ 9823  javac personTester.java 
+ 9825  javac personTester.java 
+ 9827  javac personTester.java 
+ 9829  javac personTester.java 
+ 9831  javac personTester.java 
+ 9849  javac person.java 
+ 9851  javac person.java 
+ 9853  javac student.java 
+ 9854  javac person.java 
+ 9855  javac student.java 
+ 9856  man javac
+ 9857  javac person.java student.java 
+ 9859  javac person.java student.java 
+ 9861  javac person.java student.java 
+ 9865  javac Person.java Student.java 
+ 9869  javac Person.java Student.java 
+ 9871  javac Person.java Student.java 
+ 9873  javac Person.java Student.java StudentEmployee.java 
+ 9875  javac Person.java Student.java StudentEmployee.java 
+ 9877  javac Person.java Student.java StudentEmployee.java PersonTester.java 
+ 9882  javac Person.java Student.java StudentEmployee.java PersonTester.java 
+ 9889  javac Person.java Student.java StudentEmployee.java PersonTester.java 
+ 9899  javac Person.java Student.java StudentEmployee.java PersonTester.java 
+ 9908  javac Vehicle.java 
+ 9910  javac Vehicle.java 
+ 9912  javac Vehicle.java Car.java 
+ 9916  javac Vehicle.java Boat.java 
+ 9917  javac Vehicle.java Car.java 
+ 9919  javac Vehicle.java Plane.java 
+ 9921  javac VehicleTester.java Vehicle.java Car.java Boat.java Plane.java 
+ 9928  javac Vehicle.java 
+ 9930  javac Vehicle.java 
+ 9935  javac Vehicle.java 
+ 9938  javac Vehicle.java Car.java 
+ 9941  javac Vehicle.java Car.java VehicleTester.java 
+ 9982  javac mymap1.java 
+ 9984  javac mymap1.java 
+10008  javac -d . Vehicle.java 
+10016  javac -d obs Vehicle.java 
+10018  javac -d obs Vehicle.java Car.java Boat.java Plane.java 
+10020  javac -d obs Vehicle.java Car.java Boat.java Plane.java VehicleTester.java 
+10034  javac -d . Vehicle.java Car.java Boat.java Plane.java VehicleTester.java 
+10037  javac -d . Vehicle.java Car.java Boat.java Plane.java VehicleTester1.java 
+10058  javac -d . Vehicle.java Plane.java 
+10061  javac -d . Vehicle.java Plane.java VehicleTester1.java 
+10064  javac -d . Vehicle.java Plane.java VehicleTester.java 
+10214  javac -d . Phone.java PhoneExceptionTester1.java 
+10217  javac -d . Phone.java PhoneExceptionTester1.java 
+10238  javac -p /usr/share/openjfx/lib --add-modules=ALL-MODULE-PATH -d . HelloWorldPubFx.java 
+10239  javac -p /usr/share/openjfx/lib --add-modules=ALL-MODULE-PATH -d . HelloWorldPubFx.java GUI.java 
+10249  javac -p /usr/share/openjfx/lib --add-modules=ALL-MODULE-PATH -d . HelloWorldPubFx.java
+10253  javac -p /usr/share/openjfx/lib --add-modules=ALL-MODULE-PATH -d . HelloWorldPubFx.java GUI.java 
+10259  javac -p /usr/share/openjfx/lib --add-modules=ALL-MODULE-PATH -d . HelloWorldStatFx.java 
+10266  javac -p /usr/share/openjfx/lib --add-modules=ALL-MODULE-PATH -d . HelloWorldStatFx.java 
+10270  javac -p /usr/share/openjfx/lib --add-modules=ALL-MODULE-PATH -d . HelloWorldStatFx.java 
+10304  javac -d obj ModelClasses.java 
+10308  javac -d obj -cp obj HotelReservationTester.java 
+10309  javac -d obj -sourcepath obj HotelReservationTester.java 
+10310  history | grep javac | less
+10311  javac -d obj -sourcepath obj -cp obj  HotelReservationTester.java 
+10312  javac -d obj HotelReservationTester.java 
+10314  javac -d obj HotelReservationTester.java ModelClasses.java 
+10318  javac -d obj -sourcepath obj -cp obj  HotelReservationTester.java ModelClasses.java 
+10320  javac -d obj Customer.java 
+10321  javac -d obj -sourcepath obj -cp obj  HotelReservationTester.java
+10322  javac -d obj -cp obj  HotelReservationTester.java
+10335  javac -d obj -cp obj HotelReservationTester.java
+10337  javac -d obj -cp obj HotelReservationTester.java
+10339  javac -d obj -cp obj HotelReservationTester.java
+10341  javac -d obj ModelClasses.java 
+10343  javac -d obj Customer.java 
+10345  javac -d obj Customer.java 
+10346  javac -d obj Room.java 
+10347  javac -d obj Room.java IRoom.java 
+10348  javac -d obj Room.java 
+10349  javac -d obj -cp obj Room.java 
+10350  javac -d obj IRoom.java 
+10352  javac -d obj IRoom.java 
+10353  javac -d obj RoomType.java 
+10356  javac -d obj FreeRoom.java 
+10357  javac -d obj Room.java 
+10358  javac -d obj IRoom.java 
+10359  javac -d obj Room.java 
+10360  javac -d obj Room.java IRoom.java 
+10361  javac -d obj Room.java IRoom.java FreeRoom.java 
+10362  javac -d obj Room.java FreeRoom.java 
+10363  javac -d obj Room.java IRoom.java FreeRoom.java 
+10365  javac -d obj -cp obj HotelReservationTester.java
+10366  javac -d obj Room.java IRoom.java FreeRoom.java 
+10367  javac -d obj -cp obj HotelReservationTester.java
+10369  javac -d obj RoomType.java 
+10370  javac -d obj RoomType.java obj/model/
+10371  javac -d obj RoomType.java 
+10373  javac -d obj -cp obj HotelReservationTester.java
+10374  javac -d obj -cp obj HotelReservationTester.java RoomType.java 
+10375  javac -d obj -cp obj HotelReservationTester.java
+10376  javac -d obj HotelReservationTester.java
+10377  javac -d obj HotelReservationTester.java Room.java IRoom.java RoomType.java FreeRoom.java 
+10378  javac -d obj HotelReservationTester.java Room.java IRoom.java RoomType.java FreeRoom.java Customer.java 
+10389  javac -d obj HotelReservationTester.java Room.java IRoom.java RoomType.java FreeRoom.java Customer.java 
+10414  javac -d obj ModelClasses.java 
+10415  javac -d obj -cp obj HotelReservationTester.java ModelClasses.java 
+10419  javac -d obj HotelReservationTester.java 
+10426  javac -d obj HotelReservationTester.java ModelClasses.java 
+10436  javac -d obj HotelReservationTester.java ModelClasses.java 
+10445  javac -d pkgs HotelReservationTester.java ModelClasses.java 
+10454  javac -d pkgs ModelClasses.java 
+10456  javac -d pkgs ModelClasses.java 
+10458  javac -d obj -cp pkgs HotelReservationTester.java
+10468  javac -d obj -cp pkgs HotelReservationTester.java
+10473  javac -d pkgs ModelClasses.java 
+10476  javac -d obj -cp pkgs HotelReservationTester.java
+10478  javac -d pkgs ModelClasses.java
+10482  javac -d pkgs -cp pkgs ServiceClasses.java 
+10486  javac -d pkgs -cp pkgs ServiceClasses.java 
+10489  javac -d obj -cp pkgs HotelReservationTester.java
+10492  javac -d obj -cp pkgs HotelReservationTester.java 
+10495  javac -d obj -cp pkgs HotelReservationTester.java 
+10497  javac -d obj -cp pkgs HotelReservationTester.java 
+10499  javac -d pkgs ModelClasses.java 
+10500  javac -d obj -cp pkgs HotelReservationTester.java 
+10507  javac -d obj -cp pkgs HotelReservationTester.java 
+10509  javac -d obj -cp pkgs HotelReservationTester.java 
+10511  javac -d pkgs ModelClasses.java 
+10512  javac -d obj -cp pkgs HotelReservationTester.java 
+10514  javac -d pkgs ModelClasses.java 
+10515  javac -d obj -cp pkgs HotelReservationTester.java 
+10518  javac -d pkgs ModelClasses.java 
+10520  javac -d pkgs ModelClasses.java 
+10521  javac -d pkgs -cp pkgs ServiceClasses.java 
+10522  javac -d pkgs ModelClasses.java 
+10523  javac -d pkgs -cp pkgs ServiceClasses.java 
+10524  javac -d obj -cp pkgs HotelReservationTester.java 
+10529  javac -d pkgs -cp pkgs ServiceClasses.java 
+10530  javac -d obj -cp pkgs HotelReservationTester.java 
+10533  javac -d pkgs -cp pkgs ServiceClasses.java 
+10535  javac -d pkgs -cp pkgs ResourceClasses.java 
+10537  javac -d pkgs -cp pkgs ResourceClasses.java 
+10539  javac -d pkgs -cp pkgs ResourceClasses.java 
+10554  javac -d obj -cp pkgs HotelReservationTester.java 
+10557  javac -d pkgs -cp pkgs ResourceClasses.java 
+10560  javac -d obj -cp pkgs HotelApplication.java 
+10564  javac -d obj -cp pkgs HotelApplication.java 
+10566  javac -d obj -cp pkgs HotelApplication.java 
+10568  javac -d obj -cp pkgs HotelApplication.java 
+10571  javac -d obj -cp pkgs HotelApplication.java 
+10573  javac -d obj -cp pkgs HotelApplication.java 
+10575  javac -d obj -cp pkgs HotelApplication.java 
+10577  javac -d obj -cp pkgs HotelApplication.java 
+10579  javac -d obj -cp pkgs HotelApplication.java 
+10581  javac -d obj -cp pkgs HotelApplication.java 
+10583  javac -d obj -cp pkgs HotelApplication.java 
+10585  javac -d obj -cp pkgs HotelApplication.java 
+10587  javac -d obj -cp pkgs HotelApplication.java 
+10589  javac -d obj -cp pkgs HotelApplication.java 
+10592  javac -d obj -cp pkgs HotelApplication.java 
+10595  javac -d obj -cp pkgs HotelApplication.java 
+10598  javac -d obj -cp pkgs HotelApplication.java 
+10600  javac -d obj -cp pkgs HotelApplication.java 
+10602  javac -d obj -cp pkgs HotelApplication.java 
+10604  javac -d obj -cp pkgs HotelApplication.java 
+10606  javac -d obj -cp pkgs HotelApplication.java 
+10608  javac -d obj -cp pkgs HotelApplication.java 
+10610  javac -d obj -cp pkgs HotelApplication.java 
+10612  javac -d obj -cp pkgs HotelApplication.java 
+10614  javac -d obj -cp pkgs HotelApplication.java 
+10616  javac -d obj -cp pkgs HotelApplication.java 
+10618  javac -d obj -cp pkgs HotelApplication.java 
+10620  javac -d obj -cp pkgs HotelApplication.java 
+10624  javac -d obj -cp pkgs HotelApplication.java 
+10626  javac -d obj -cp pkgs HotelApplication.java 
+10628  javac -d obj -cp pkgs HotelApplication.java 
+10630  history | grep javac > javac.txt

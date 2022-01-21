@@ -138,14 +138,34 @@ public class UserInterfaceClasses
 			AR = AdminResource.getInstance();
 		}
 		
+		boolean isAuthentic()
+		{
+			String pw; // admin password
+			
+			int pwHash = -2038048907; // masteryoda, nbtufszpeb, adoyretsam
+			
+			System.out.print("Please enter the Admin password: ");
+			
+			pw = CLI.nextLine();
+			
+			if( pwHash == pw.hashCode() )
+				{ System.out.println(); return true; }
+			else
+				{ System.out.println("\nIncorrect password!!\n"); return false; }
+		}
+		
 		public void adminMenuManager()
 		{
+			if( !isAuthentic() )
+				return;
+			
 			int choice;
 
 			while(true)
 			{
 				System.out.print(this); // print admin menu
 			
+					//get menu selection from user
 				try 
 					{ choice = Integer.parseInt( CLI.nextLine() ); }
 			

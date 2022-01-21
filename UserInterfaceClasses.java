@@ -57,11 +57,11 @@ public class UserInterfaceClasses
 				switch(choice)
 				{
 					case 1:
-						System.out.println(choice + "\n");
+						System.out.println(choice + "\n"); // reserve a room
 					break;
 				
 					case 2:
-						System.out.println(choice + "\n");
+						System.out.println(choice + "\n"); // see my reservations
 					break;
 				
 					case 3:
@@ -90,6 +90,8 @@ public class UserInterfaceClasses
 			String email, lastName, firstName;
 
 			boolean valid;
+
+			System.out.println("\n");
 
 			do {
 				System.out.print("Please enter your email address, as name@domain.com: ");
@@ -182,11 +184,13 @@ public class UserInterfaceClasses
 					break;
 				
 					case 2:
-						System.out.println(choice + "\n");
+						displayAllRooms();
+						//System.out.println(choice + "\n"); //rooms
 					break;
 				
 					case 3:
-						System.out.println(choice + "\n");
+						AR.displayAllReservations();
+						System.out.println("\n");
 					break;
 				
 					case 4:
@@ -195,7 +199,7 @@ public class UserInterfaceClasses
 					break;
 				
 					case 5:
-						System.out.println();
+						System.out.println(); // return to main menu
 						return;
 				
 					default:
@@ -204,13 +208,23 @@ public class UserInterfaceClasses
 			}
 		}
 
+		void displayAllRooms()
+		{
+			System.out.println("\nHotel Rooms Listing\n");
+
+			for( IRoom R: AR.getAllRooms() )
+			{
+				System.out.println(R);
+				System.out.println();
+			}
+			
+			System.out.println();
+		}
 
 		public void addRooms()
 		{
-			//Scanner CLI = new Scanner(System.in);
-
 			ArrayList<IRoom> rooms = new ArrayList<IRoom>();
-			String rspns, roomNumber, type;
+			String ans, roomNumber, type;
 			Double price;
 
 			RoomType RT;
@@ -249,7 +263,7 @@ public class UserInterfaceClasses
 				while(true)
 				{
 					System.out.print("Enter room type: 1 for single bed, 2 for double bed: ");
-					type = CLI.nextLine(); //System.out.println(type);
+					type = CLI.nextLine();
 
 					if( type.length() == 0 )
 						continue;
@@ -272,18 +286,18 @@ public class UserInterfaceClasses
 				{
 					System.out.println("\nWould you like to add another room?");
 					System.out.print("Please enter, Y(y/yes/Yes/YES) or N(n/no/No/NO): ");
-					rspns = CLI.nextLine(); System.out.println(rspns.length() + rspns);
+					ans = CLI.nextLine();
 
-					if( answers.contains(rspns) )
+					if( answers.contains(ans) )
 						break;
 				}
+				
+				System.out.println();
 
-				//System.out.println( (rspns == "y") || (rspns == "Y") || (rspns == "Yes") || (rspns == "YES") || (rspns == "yes") );
-
-			} while( (rspns == "y") || (rspns == "Y") || (rspns == "Yes") || (rspns == "YES") || (rspns == "yes") );
+			} while( (ans.toLowerCase().compareTo("yes") == 0) || (ans.toLowerCase().compareTo("y") == 0) );
 
 			AR.addRooms(rooms); System.out.println("\n");
-		}
+		} // end addRooms()
 
 		@Override 
 		public String toString()

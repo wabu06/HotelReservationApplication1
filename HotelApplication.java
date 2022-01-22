@@ -14,13 +14,8 @@ import cui.UserInterfaceClasses.*;
 
 public class HotelApplication
 {
-	public static void main(String[] args) //throws Exception
+	public static void main(String[] args)
 	{
-		MainMenu MM = MainMenu.getInstance();
-		//AdminMenu AM = AdminMenu.getInstance();
-		
-		System.out.println("Welcome to the Hotel Reservation Application\n");
-		
-		MM.mainMenuManager();
+		MainMenu.launch().mainMenuManager();
 	}
 }

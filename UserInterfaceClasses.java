@@ -28,6 +28,12 @@ public class UserInterfaceClasses
 
 		final static MainMenu mmInstance = new MainMenu();
 		public static MainMenu getInstance() { return mmInstance; }
+		
+		public static MainMenu launch()
+		{
+			System.out.println("Welcome to the Hotel Reservation Application\n");
+			return mmInstance;
+		}
 
 		private MainMenu()
 		{
@@ -274,7 +280,7 @@ public class UserInterfaceClasses
 						break;
 				}
 
-				if (type == "1")
+				if( type.compareTo("1") == 0 )
 					RT = RoomType.SINGLE;
 				else
 					RT = RoomType.DOUBLE;

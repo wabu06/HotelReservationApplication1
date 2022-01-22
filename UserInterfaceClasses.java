@@ -210,15 +210,19 @@ public class UserInterfaceClasses
 
 		void displayAllRooms()
 		{
-			System.out.println("\nHotel Rooms Listing\n");
-
-			for( IRoom R: AR.getAllRooms() )
+			Collection<IRoom> rooms = AR.getAllRooms();
+			
+			if (rooms.size() == 0)
+				System.out.println("\nThere No Rooms To Display\n");
+			else
 			{
-				System.out.println(R);
+				System.out.println("\nHotel Rooms Listing");
+
+				for(IRoom R: rooms)
+					System.out.println("\n" + R + "\n");
+			
 				System.out.println();
 			}
-			
-			System.out.println();
 		}
 
 		public void addRooms()
@@ -228,8 +232,6 @@ public class UserInterfaceClasses
 			Double price;
 
 			RoomType RT;
-
-			String answers = "y, Y, Yes, YES, yes, no, NO, N, n, No";
 
 			System.out.println();
 
@@ -282,23 +284,24 @@ public class UserInterfaceClasses
 				else
 					rooms.add( new Room(roomNumber, price, RT) );
 
-				while(true)
-				{
+				do {
+				
 					System.out.println("\nWould you like to add another room?");
 					System.out.print("Please enter, Y(y/yes/Yes/YES) or N(n/no/No/NO): ");
 					ans = CLI.nextLine();
 
-					if( answers.contains(ans) )
-						break;
-				}
+				} while( (ans.toLowerCase().compareTo("yes") != 0) && (ans.toLowerCase().compareTo("y") != 0) &&
+						(ans.toLowerCase().compareTo("no") != 0) && (ans.toLowerCase().compareTo("n") != 0) );
 				
 				System.out.println();
 
 			} while( (ans.toLowerCase().compareTo("yes") == 0) || (ans.toLowerCase().compareTo("y") == 0) );
 
 			AR.addRooms(rooms); System.out.println("\n");
-		} // end addRooms()
-
+		}
+		// end addRooms()
+		
+		
 		@Override 
 		public String toString()
 		{
@@ -319,7 +322,7 @@ public class UserInterfaceClasses
 			Collection<Customer> customers = AR.getAllCustomers();
 
 			if (customers.size() == 0)
-				System.out.println("\nNo customers\n");
+				System.out.println("\nThere No Customers To Display\n");
 			else
 			{
 				for(Customer C: customers)

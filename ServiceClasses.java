@@ -130,10 +130,15 @@ public class ServiceClasses
 		
 		public void printAllReservations()
 		{
-			for(ArrayList<Reservation> RA: ReservationMap.values() )
+			if (ReservationMap.size() == 0)
+				System.out.print("\nThere No Reservations To Display");
+			else
 			{
-				for(Reservation R: RA)
-					System.out.println("\n" + R + "\n");
+				for(ArrayList<Reservation> RA: ReservationMap.values() )
+				{
+					for(Reservation R: RA)
+						System.out.println("\n" + R + "\n");
+				}
 			}
 		}
 	 }

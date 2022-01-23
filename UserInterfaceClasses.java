@@ -63,15 +63,17 @@ public class UserInterfaceClasses
 				switch(choice)
 				{
 					case 1:
-						System.out.println(choice + "\n"); // reserve a room
+						reserveRoom();
+						//System.out.println(choice + "\n"); // reserve a room
 					break;
 				
 					case 2:
-						System.out.println(choice + "\n"); // see my reservations
+						displayCustomerReservations();
+						//System.out.println(choice + "\n"); // see my reservations
 					break;
 				
 					case 3:
-						createAccount();
+						createAccount( getEmail() );
 						System.out.println();
 					break;
 				
@@ -86,34 +88,159 @@ public class UserInterfaceClasses
 
 					default:
 						System.out.println("\nInvalid Input!!\n");
-				} // end of switch
-			} // end of while
-		} // end mainMenuManager
+				}
+				// end of switch
+			}
+			// end of while
+		}
+		// end mainMenuManager
 
-
-		public void createAccount()
+		void displayCustomerReservations()
 		{
-			String email, lastName, firstName;
+			String email = getEmail();
+			
+			Customer C = HR.getCustomer(email);
+			
+			if (C == null)
+			{
+				System.out.println("\nYour are not a current customer!!\n");
+				return;
+			}
+			
+			Collection<Reservation> reserves = HR.getCustomerReservations(email);
+			
+			if (reserves == null)
+				System.out.println("\nYou have no reservations!!\n");
+			else
+			{ 
+				System.out.println("\nYour reservations are:\n");
+			
+				for(Reservation R:  reserves)
+					System.out.println(R);
+			}
+		}
 
+		String getEmail()
+		{
+			String email;
 			boolean valid;
-
-			System.out.println("\n");
-
+			
 			do {
-				System.out.print("Please enter your email address, as name@domain.com: ");
+				System.out.print("\nPlease enter your email address, as name@domain.com: ");
 				email = CLI.nextLine();
 
 				valid = HR.isEmailValid(email);
 
 			} while(!valid);
+			
+			return email;
+		}
+		
+		public void reserveRoom()
+		{
+			String email = getEmail();
+			
+			Customer C = HR.getCustomer(email);
 
-			System.out.print("Please enter your last name: ");
+			String ans;
+			
+			if( C == null )
+				C = createAccount(email);
+			else
+			{
+				System.out.print("\nAn account was found for email entered:\n" + C + "\nPlease confirm(Y/n) ");
+				ans = CLI.nextLine();
+				
+				if (ans.toLowerCase().compareTo("n") == 0)
+				{
+					System.out.println("\nOK, let's update the account!");
+					C = createAccount(email);
+				}
+			}
+			
+			String cidStr, codStr; // check IN/OUT dates;
+			
+			Date cid, cod;
+			
+			while(true)
+			{
+				while(true)
+				{
+					try
+					{
+						System.out.print("\nPlease enter your check in date as (mm/dd/yyy): ");
+						cidStr = CLI.nextLine();
+						cid = HR.getDateInstance(cidStr);
+						break;
+					}
+					catch(Exception ex)
+						{ System.out.println("\n" + ex.getMessage() ); }
+				}
+			
+				while(true)
+				{
+					try
+					{
+						System.out.print("\nPlease enter your check out date as (mm/dd/yyy): ");
+						codStr = CLI.nextLine();
+						cod = HR.getDateInstance(codStr);
+						break;
+					}
+					catch(Exception ex)
+						{ System.out.println("\n" + ex.getMessage() ); }
+				}
+			
+				if( !cid.before(cod) )
+					System.out.println("\nThe check in date must precede the check out date!!");
+				else
+					break;
+			}
+			// end of outermost while
+			
+			Collection<IRoom> rooms = HR.findARoom(cid, cod);
+			String rm;
+			boolean valid = false;
+			
+			if (rooms.size() == 0)
+				System.out.println("\nSorry no rooms available\n");
+			else
+			{
+				do {
+				
+					System.out.println("\nRooms available are:\n");
+				
+					for(IRoom R: rooms)
+						System.out.println(R);
+
+					System.out.println("\nPlease select by entering room number from above listing: ");
+					rm = CLI.nextLine();
+				
+					for(IRoom R: rooms) // verify that user picked from available rooms
+					{
+						valid = rm.compareTo( R.getRoomNumber() ) == 0;
+					
+						if (valid)
+							break;
+					}
+				
+				} while(!valid);
+				
+				HR.bookARoom(email, HR.getRoom(rm), cid, cod);
+			}
+		}
+		// end of reserveRoom()
+
+		public Customer createAccount(String email)
+		{
+			String lastName, firstName;
+
+			System.out.print("\nPlease enter your last name: ");
 			lastName = CLI.nextLine();
 
 			System.out.print("Please enter your first name: ");
 			firstName = CLI.nextLine();
 
-			HR.createACustomer(email, firstName, lastName);
+			return HR.createACustomer(email, firstName, lastName);
 		}
 
 		@Override 
@@ -211,8 +338,11 @@ public class UserInterfaceClasses
 					default:
 						System.out.println("\nInvalid Input!!\n");
 				}
+				// end switch
 			}
+			// end of while
 		}
+		// end of adminMenuManager()
 
 		void displayAllRooms()
 		{

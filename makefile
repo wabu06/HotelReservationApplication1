@@ -1,9 +1,16 @@
+all:	models services resources ui hotel
 
-pkgs/model/ModelClasses.class:	ModelClasses.java
+models: ModelClasses.java
 	javac -d pkgs ModelClasses.java
 
-pkgs/service/ServiceClasses.class:	ServiceClasses.java pkgs/model/ModelClasses.class
+services:	ModelClasses.java ServiceClasses.java
 	javac -d pkgs -cp pkgs ServiceClasses.java
 
-obj/HotelReservationTester.class:	HotelReservationTester.java pkgs/model/ModelClasses.class pkgs/service/ServiceClasses.class
-	javac -d obj -cp pkgs HotelReservationTester.java
+resources:	ModelClasses.java ServiceClasses.java ResourceClasses.java
+	javac -d pkgs -cp pkgs ResourceClasses.java
+
+ui:	ModelClasses.java ServiceClasses.java ResourceClasses.java UserInterfaceClasses.java
+	javac -d pkgs -cp pkgs UserInterfaceClasses.java
+
+hotel:	ModelClasses.java ServiceClasses.java ResourceClasses.java UserInterfaceClasses.java
+	javac -d obj -cp pkgs HotelApplication.java

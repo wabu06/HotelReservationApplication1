@@ -25,8 +25,12 @@ public class ServiceClasses
 		
 		private CustomerService() { CustomerMap = new HashMap<String, Customer>(); } 
 		
-	 	public void addCustomer(String email, String firstName, String lastName)
-			{ CustomerMap.put( email, new Customer(firstName, lastName, email) ); }
+	 	public Customer addCustomer(String email, String firstName, String lastName)
+		{
+			Customer C = new Customer(firstName, lastName, email);
+			CustomerMap.put(email, C);
+			return C;
+		}
 		
 		public Customer getCustomer(String customerEmail)
 			{ return CustomerMap.get(customerEmail); }
@@ -76,7 +80,9 @@ public class ServiceClasses
 			
 			Reservation R = new Reservation(customer, room, checkInDate, checkOutDate);
 			
-			RoomMap.get( room.getRoomNumber() ).addReservation(R);
+			//RoomMap.get( room.getRoomNumber() ).addReservation(R);
+			
+			room.addReservation(R);
 			
 			String email = customer.getEmail();
 			
@@ -94,32 +100,28 @@ public class ServiceClasses
 			
 			Date cid, cod;
 			
-			boolean vacant;
-			
-			int i; // amount of reservations checked
+			boolean vacant = false;
 			
 			for(IRoom rm: RoomMap.values() )
 			{
 				if ( rm.hasReservations() )
 				{
-					i = 0;
-					
 					for( Reservation R: rm.getReservations() )
 					{
 						cid = R.getCheckInDate();
 						cod = R.getCheckOutDate();
 						
-						vacant = (checkOutDate.compareTo(cid) <= 0) || (checkInDate.compareTo(cod) >= 0);
+						vacant = checkOutDate.before(cid) || checkInDate.after(cod);
 						
 						if( !vacant  )
 							break;
-						
-						i++;
 					}
 					
-					if( i == rm.totalReservations() )
+					if(vacant)
 						rooms.add(rm);
 				}
+				else
+					rooms.add(rm);
 			}
 			
 			return rooms;

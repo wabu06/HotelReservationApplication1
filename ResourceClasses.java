@@ -44,10 +44,26 @@ public class ResourceClasses
 			// create a date instance with user entered data
 		public Date getDateInstance(String date) 
 		{ 
-			// first check to see if date was entered in the correct format, if not perhaps
-			// throw an exception
+			// first check to see if date was entered in the correct format, if not throw an exception
 			
-			return null;
+			String dateRegX = "^(\\d{2})/(\\d{2})/(\\d{4})$";
+			Pattern pattern = Pattern.compile(dateRegX);
+			boolean match = pattern.matcher(date).matches();
+			
+			if (match)
+			{
+				String[] MDY = date.split("/");
+			
+				Calendar cal = Calendar.getInstance();
+			
+				cal.set( Integer.parseInt( MDY[2] ), Integer.parseInt( MDY[0] ), Integer.parseInt( MDY[1] ) );
+			
+				Date D = cal.getTime();
+			
+				return D;
+			}
+			else
+				throw new IllegalArgumentException("Invalid Date Format!!");
 		}
 		
 		public int verifyCheckInOutDates(Date checkInDate, Date CheckOutDate)
@@ -55,21 +71,23 @@ public class ResourceClasses
 			// return -1 if checkInDate preceeds CheckOutDate, which is the valid case
 			// return 0 if checkInDate = CheckOutDate
 			// return 1 if checkInDate comes after CheckOutDate
+			
+			checkInDate.before(CheckOutDate);
 
 			return -1;
 		}
 		
 		public Customer getCustomer(String email) { return CS.getCustomer(email); }
 		
-		public void createACustomer(String  email,  String firstName, String lastName)
-			{ CS.addCustomer(email, firstName, lastName); }
+		public Customer createACustomer(String  email,  String firstName, String lastName)
+			{ return CS.addCustomer(email, firstName, lastName); }
 		
 		public IRoom getRoom(String roomNumber) { return RS.getARoom(roomNumber); }
 		
 		public Reservation bookARoom(String customerEmail, IRoom room, Date checkInDate, Date CheckOutDate)
 			{ return RS.reserveARoom( CS.getCustomer(customerEmail), room, checkInDate, CheckOutDate ); }
 		
-		public Collection<Reservation> getCustomersReservations(String customerEmail)
+		public Collection<Reservation> getCustomerReservations(String customerEmail)
 			{ return RS.getCustomersReservation( CS.getCustomer(customerEmail) ); }
 		
 		public Collection<IRoom> findARoom(Date checkIn, Date checkOut)
@@ -102,6 +120,8 @@ public class ResourceClasses
 		public Collection<IRoom> getAllRooms() { return RS.getRooms(); }
 		
 		public Collection<Customer> getAllCustomers() { return CS.getAllCustomers(); }
+		
+		public IRoom getRoom(String roomId) { return RS.getARoom(roomId); }
 		
 		public void displayAllReservations() { RS.printAllReservations(); }
 	}

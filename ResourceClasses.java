@@ -66,17 +66,6 @@ public class ResourceClasses
 				throw new IllegalArgumentException("Invalid Date Format!!");
 		}
 		
-		public int verifyCheckInOutDates(Date checkInDate, Date CheckOutDate)
-		{ 
-			// return -1 if checkInDate preceeds CheckOutDate, which is the valid case
-			// return 0 if checkInDate = CheckOutDate
-			// return 1 if checkInDate comes after CheckOutDate
-			
-			checkInDate.before(CheckOutDate);
-
-			return -1;
-		}
-		
 		public Customer getCustomer(String email) { return CS.getCustomer(email); }
 		
 		public Customer createACustomer(String  email,  String firstName, String lastName)

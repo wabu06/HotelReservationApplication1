@@ -74,7 +74,7 @@ public class UserInterfaceClasses
 				
 					case 3:
 						createAccount( getEmail() );
-						System.out.println();
+						//System.out.println();
 					break;
 				
 					case 4:
@@ -148,7 +148,7 @@ public class UserInterfaceClasses
 				C = createAccount(email);
 			else
 			{
-				System.out.print("\nAn account was found for email entered:\n" + C + "\nPlease confirm(Y/n) ");
+				System.out.print("\nAn account was found for the email entered:\n\n" + C + "\n\nPlease confirm(Y/n) ");
 				ans = CLI.nextLine();
 				
 				if (ans.toLowerCase().compareTo("n") == 0)
@@ -212,7 +212,7 @@ public class UserInterfaceClasses
 					for(IRoom R: rooms)
 						System.out.println(R);
 
-					System.out.println("\nPlease select by entering room number from above listing: ");
+					System.out.print("\nPlease select by entering room number from above listing: ");
 					rm = CLI.nextLine();
 				
 					for(IRoom R: rooms) // verify that user picked from available rooms
@@ -239,6 +239,8 @@ public class UserInterfaceClasses
 
 			System.out.print("Please enter your first name: ");
 			firstName = CLI.nextLine();
+			
+			System.out.println();
 
 			return HR.createACustomer(email, firstName, lastName);
 		}
@@ -433,7 +435,7 @@ public class UserInterfaceClasses
 
 			} while( (ans.toLowerCase().compareTo("yes") == 0) || (ans.toLowerCase().compareTo("y") == 0) );
 
-			AR.addRooms(rooms); System.out.println("\n");
+			AR.addRooms(rooms); //System.out.println("\n");
 		}
 		// end addRooms()
 		

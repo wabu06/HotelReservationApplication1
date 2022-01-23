@@ -87,9 +87,12 @@ public class ServiceClasses
 			String email = customer.getEmail();
 			
 			if( ReservationMap.containsKey(email) )
-				ReservationMap.get(email).add(R);
+				{ ReservationMap.get(email).add(R); }
 			else
-				ReservationMap.put( email, new ArrayList<Reservation>() ).add(R);
+			{
+				ReservationMap.put( email, new ArrayList<Reservation>() );
+				ReservationMap.get(email).add(R);
+			}
 
 			return R;
 		}
@@ -133,7 +136,7 @@ public class ServiceClasses
 		public void printAllReservations()
 		{
 			if (ReservationMap.size() == 0)
-				System.out.print("\nThere No Reservations To Display");
+				System.out.print("\nThere Are No Reservations To Display");
 			else
 			{
 				for(ArrayList<Reservation> RA: ReservationMap.values() )

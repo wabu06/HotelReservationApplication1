@@ -53,7 +53,7 @@ public class ModelClasses
 		
 		public ArrayList<Reservation> getReservations() { return RoomReservations; }
 		public void addReservation(Reservation R) { RoomReservations.add(R); }
-		public boolean hasReservations() { return RoomReservations.isEmpty(); }
+		public boolean hasReservations() { return !RoomReservations.isEmpty(); }
 		public int totalReservations() { return RoomReservations.size(); }
 	
 		public boolean isFree()

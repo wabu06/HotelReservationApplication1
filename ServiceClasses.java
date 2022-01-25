@@ -27,9 +27,17 @@ public class ServiceClasses
 		
 	 	public Customer addCustomer(String email, String firstName, String lastName)
 		{
-			Customer C = new Customer(firstName, lastName, email);
-			CustomerMap.put(email, C);
-			return C;
+			
+			Customer C;
+			
+			if( CustomerMap.containsKey(email) )
+				throw new IllegalArgumentException("There Is An Existing Account With Email Entered");
+			else
+			{
+				C = new Customer(firstName, lastName, email);
+				CustomerMap.put(email, C);
+				return C;
+			}
 		}
 		
 		public Customer getCustomer(String customerEmail)

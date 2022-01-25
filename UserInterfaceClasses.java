@@ -103,20 +103,20 @@ public class UserInterfaceClasses
 			
 			if (C == null)
 			{
-				System.out.println("\nYour are not a current customer!!\n");
+				System.out.println("\nYour Are Not A Current Customer\n");
 				return;
 			}
 			
 			Collection<Reservation> reserves = HR.getCustomerReservations(email);
 			
 			if (reserves == null)
-				System.out.println("\nYou have no reservations!!\n");
+				System.out.println("\nYou Have No Reservations\n");
 			else
 			{ 
-				System.out.println("\nYour reservations are:\n");
+				System.out.println("\nYour Reservations Are:\n");
 			
 				for(Reservation R:  reserves)
-					System.out.println(R);
+					System.out.println(R + "\n");
 			}
 		}
 
@@ -170,7 +170,7 @@ public class UserInterfaceClasses
 					{
 						System.out.print("\nPlease enter your check in date as (mm/dd/yyy): ");
 						cidStr = CLI.nextLine();
-						cid = HR.getDateInstance(cidStr);
+						cid = HR.getDateInstance(cidStr, true);
 						break;
 					}
 					catch(Exception ex)
@@ -183,7 +183,7 @@ public class UserInterfaceClasses
 					{
 						System.out.print("\nPlease enter your check out date as (mm/dd/yyy): ");
 						codStr = CLI.nextLine();
-						cod = HR.getDateInstance(codStr);
+						cod = HR.getDateInstance(codStr, false);
 						break;
 					}
 					catch(Exception ex)
@@ -210,7 +210,7 @@ public class UserInterfaceClasses
 					System.out.println("\nRooms available are:\n");
 				
 					for(IRoom R: rooms)
-						System.out.println(R);
+						System.out.println(R + "\n");
 
 					System.out.print("\nPlease select by entering room number from above listing: ");
 					rm = CLI.nextLine();
@@ -225,7 +225,7 @@ public class UserInterfaceClasses
 				
 				} while(!valid);
 				
-				HR.bookARoom(email, HR.getRoom(rm), cid, cod);
+				System.out.println( "\n" + HR.bookARoom(email, HR.getRoom(rm), cid, cod) + "\n"); 
 			}
 		}
 		// end of reserveRoom()
@@ -240,9 +240,24 @@ public class UserInterfaceClasses
 			System.out.print("Please enter your first name: ");
 			firstName = CLI.nextLine();
 			
-			System.out.println();
-
-			return HR.createACustomer(email, firstName, lastName);
+			Customer C;
+			
+			while(true)
+			{
+				try
+					{ C = HR.createACustomer(email, firstName, lastName); break; }
+				
+				catch(Exception ex)
+					{
+						System.out.println("\n" + ex.getMessage() );
+						System.out.println("You will need to use another email!!");
+						email = getEmail();
+					}
+			}
+				
+			System.out.println("\n" +  C + "\n");
+			
+			return C;
 		}
 
 		@Override 
@@ -279,7 +294,7 @@ public class UserInterfaceClasses
 		{
 			String pw; // admin password
 			
-			int pwHash = -2038048907; // masteryoda, nbtufszpeb, adoyretsam
+			int pwHash = -2038048907; // masteryoda, nbtufszpeb, adoyretsam, bepzsfutbn
 			
 			System.out.print("Please enter the Admin password: ");
 			
@@ -288,7 +303,7 @@ public class UserInterfaceClasses
 			if( pwHash == pw.hashCode() )
 				{ System.out.println(); return true; }
 			else
-				{ System.out.println("\nIncorrect password!!\n"); return false; }
+				{ System.out.println("\nIncorrect Password!!\n"); return false; }
 		}
 		
 		public void adminMenuManager()
@@ -351,7 +366,7 @@ public class UserInterfaceClasses
 			Collection<IRoom> rooms = AR.getAllRooms();
 			
 			if (rooms.size() == 0)
-				System.out.println("\nThere No Rooms To Display\n");
+				System.out.println("\nThere Are No Rooms To Display\n");
 			else
 			{
 				System.out.println("\nHotel Rooms Listing");
@@ -460,7 +475,7 @@ public class UserInterfaceClasses
 			Collection<Customer> customers = AR.getAllCustomers();
 
 			if (customers.size() == 0)
-				System.out.println("\nThere No Customers To Display\n");
+				System.out.println("\nThere Are No Customers To Display\n");
 			else
 			{
 				for(Customer C: customers)

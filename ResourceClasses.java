@@ -42,7 +42,7 @@ public class ResourceClasses
 		}
 		
 			// create a date instance with user entered data
-		public Date getDateInstance(String date) 
+		public Date getDateInstance(String date, boolean checkInDate) 
 		{ 
 			// first check to see if date was entered in the correct format, if not throw an exception
 			
@@ -53,10 +53,29 @@ public class ResourceClasses
 			if (match)
 			{
 				String[] MDY = date.split("/");
+				
+				int month = Integer.parseInt( MDY[0] ) - 1;
+				
+				if( (month < 0) || (month > 11) )
+					throw new IllegalArgumentException("Month Out Of Range!!");
+				
+				int day = Integer.parseInt( MDY[1] );
+				
+				if( (day < 1) || (day > 31) )
+					throw new IllegalArgumentException("Day Out Of Range!!");
+				
+				int year = Integer.parseInt( MDY[2] );
+				
+				int hour;
+				
+				if (checkInDate)
+					hour = 15;
+				else
+					hour = 11;
 			
 				Calendar cal = Calendar.getInstance();
 			
-				cal.set( Integer.parseInt( MDY[2] ), Integer.parseInt( MDY[0] ), Integer.parseInt( MDY[1] ) );
+				cal.clear(); cal.set(year, month, day, hour, 00);
 			
 				Date D = cal.getTime();
 			
@@ -65,6 +84,7 @@ public class ResourceClasses
 			else
 				throw new IllegalArgumentException("Invalid Date Format!!");
 		}
+		// end getDateInstance
 		
 		public Customer getCustomer(String email) { return CS.getCustomer(email); }
 		

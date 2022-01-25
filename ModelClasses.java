@@ -148,7 +148,7 @@ public class ModelClasses
 		@Override 
 		public String toString()
 		{ 
-			String resStr = "Reservation For:\n" + customer.toString() + "\n" + room.toString() + "\nCheck In Date: ";
+			String resStr = customer.toString() + "\n" + room.toString() + "\nCheck In Date: ";
 			return resStr + checkInDate.toString() + "\nCheck Out Date: " + checkOutDate.toString();
 		}
 	}

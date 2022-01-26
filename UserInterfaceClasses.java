@@ -149,7 +149,8 @@ public class UserInterfaceClasses
 				if (ans.toLowerCase().compareTo("n") == 0)
 				{
 					System.out.println("\nOK, let's create a new account!");
-					C = createAccount(email);
+					C = createAccount( getEmail() );
+					email = HR.getCustomerEmail(C);
 				}
 			}
 			

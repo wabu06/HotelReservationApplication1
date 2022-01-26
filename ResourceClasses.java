@@ -86,6 +86,8 @@ public class ResourceClasses
 		}
 		// end getDateInstance
 		
+		public String getCustomerEmail(Customer C) { return C.getEmail(); }
+		
 		public Customer getCustomer(String email) { return CS.getCustomer(email); }
 		
 		public Customer createACustomer(String  email,  String firstName, String lastName)

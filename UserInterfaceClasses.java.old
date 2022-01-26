@@ -157,10 +157,6 @@ public class UserInterfaceClasses
 			
 			Date cid, cod;
 			
-			Collection<IRoom> rooms;
-			String rm;
-			boolean valid = false;
-			
 			while(true)
 			{
 				while(true)
@@ -192,47 +188,40 @@ public class UserInterfaceClasses
 				if( !cid.before(cod) )
 					System.out.println("\nThe check in date must precede the check out date!!");
 				else
-				{
-					rooms = HR.findARoom(cid, cod);
-					
-					if (rooms.size() == 0)
-					{
-						System.out.println("\nSorry there are no rooms available, ");
-						System.out.print("Would you like try again with different check in/out dates?(Y/n) ");
-						ans = CLI.nextLine();
-						
-						if( (ans.toLowerCase().compareTo("n") == 0) || (ans.toLowerCase().compareTo("no") == 0) )
-							{ System.out.println("\n"); break; }
-					}					
-					else
-					{
-						do {
-				
-							System.out.println("\nRooms available are:\n");
-				
-							for(IRoom R: rooms)
-								System.out.println(R + "\n");
-
-							System.out.print("\nPlease select by entering room number from above listing: ");
-							rm = CLI.nextLine();
-				
-							for(IRoom R: rooms) // verify that user picked from available rooms
-							{
-								valid = rm.compareTo( R.getRoomNumber() ) == 0;
-					
-								if (valid)
-									break;
-							}
-				
-						} while(!valid);
-				
-						System.out.println( "\n" + HR.bookARoom(email, HR.getRoom(rm), cid, cod) + "\n");
-						break; 
-					}
-				}
-				// end outer else
+					break;
 			}
 			// end of outermost while
+			
+			Collection<IRoom> rooms = HR.findARoom(cid, cod);
+			String rm;
+			boolean valid = false;
+			
+			if (rooms.size() == 0)
+				System.out.println("\nSorry no rooms available\n");
+			else
+			{
+				do {
+				
+					System.out.println("\nRooms available are:\n");
+				
+					for(IRoom R: rooms)
+						System.out.println(R + "\n");
+
+					System.out.print("\nPlease select by entering room number from above listing: ");
+					rm = CLI.nextLine();
+				
+					for(IRoom R: rooms) // verify that user picked from available rooms
+					{
+						valid = rm.compareTo( R.getRoomNumber() ) == 0;
+					
+						if (valid)
+							break;
+					}
+				
+				} while(!valid);
+				
+				System.out.println( "\n" + HR.bookARoom(email, HR.getRoom(rm), cid, cod) + "\n"); 
+			}
 		}
 		// end of reserveRoom()
 

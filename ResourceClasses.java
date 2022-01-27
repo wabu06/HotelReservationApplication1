@@ -41,6 +41,24 @@ public class ResourceClasses
 			return pattern.matcher(email).matches();
 		}
 		
+		boolean isLeapYear(int year)
+		{
+			if( (year % 4) == 0 )
+			{
+			 	if( (year % 100) == 0 )
+				{
+					if( (year % 400) == 0 )
+						return true;
+					else
+						return false;
+				}
+				else
+					return true;
+			}
+			else
+				return false;
+		}
+		
 			// create a date instance with user entered data
 		public Date getDateInstance(String date, boolean checkInDate) 
 		{ 
@@ -61,10 +79,35 @@ public class ResourceClasses
 				
 				int day = Integer.parseInt( MDY[1] );
 				
-				if( (day < 1) || (day > 31) )
-					throw new IllegalArgumentException("Day Out Of Range!!");
-				
 				int year = Integer.parseInt( MDY[2] );
+				
+					// check for leap year, if so then february can have at most 29 days
+				if (month == 1)
+				{
+					if( isLeapYear(year) )
+					{
+						if( (day < 1) || (day > 29) )
+							throw new IllegalArgumentException("Date Out Of Range!!");
+					}
+					else
+					{
+						if( (day < 1) || (day > 28) )
+							throw new IllegalArgumentException("Date Out Of Range!!");
+					}
+				}
+				else
+				{
+					if( (month == 8) || (month == 3) || (month == 5) || (month == 10) )
+					{
+						if( (day < 1) || (day > 30) )
+							throw new IllegalArgumentException("Date Out Of Range!!");
+					}
+					else
+					{
+						if( (day < 1) || (day > 31) )
+							throw new IllegalArgumentException("Date Out Of Range!!");
+					}
+				}
 				
 				int hour;
 				
@@ -78,8 +121,11 @@ public class ResourceClasses
 				cal.clear(); cal.set(year, month, day, hour, 00);
 			
 				Date D = cal.getTime();
-			
-				return D;
+				
+				if( D.after( Calendar.getInstance().getTime() ) )
+					return D;
+				else 
+					throw new IllegalArgumentException("Check In/Out Dates, Cannot Precede Current Date");
 			}
 			else
 				throw new IllegalArgumentException("Invalid Date Format!!");

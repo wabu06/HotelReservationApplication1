@@ -432,6 +432,8 @@ public class UserInterfaceClasses
 					rooms.add( new FreeRoom(roomNumber, RT) );
 				else
 					rooms.add( new Room(roomNumber, price, RT) );
+				
+				System.out.println( "\n" + rooms.get( rooms.size()-1 ) );
 
 				do {
 				
@@ -446,7 +448,7 @@ public class UserInterfaceClasses
 
 			} while( (ans.toLowerCase().compareTo("yes") == 0) || (ans.toLowerCase().compareTo("y") == 0) );
 
-			AR.addRooms(rooms); //System.out.println("\n");
+			AR.addRooms(rooms);
 		}
 		// end addRooms()
 		

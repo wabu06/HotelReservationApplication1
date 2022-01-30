@@ -65,6 +65,8 @@ public class ServiceClasses
 		
 		public IRoom getARoom(String roomId) { return RoomMap.get(roomId); }
 		
+		public boolean roomExist(String roomId) { return RoomMap.containsKey(roomId); }
+		
 		public Collection<IRoom> getRooms()
 		{
 			ArrayList<IRoom> rooms = new ArrayList<IRoom>();

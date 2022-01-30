@@ -180,6 +180,8 @@ public class ResourceClasses
 		
 		public IRoom getRoom(String roomId) { return RS.getARoom(roomId); }
 		
+		public boolean roomExist(String roomId) { return RS.roomExist(roomId); }
+		
 		public void displayAllReservations() { RS.printAllReservations(); }
 	}
 }

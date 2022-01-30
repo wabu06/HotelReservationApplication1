@@ -376,7 +376,7 @@ public class UserInterfaceClasses
 
 		public void addRooms()
 		{
-			ArrayList<IRoom> rooms = new ArrayList<IRoom>();
+			HashMap<String, IRoom> rooms = new HashMap<String, IRoom>();
 			String ans, roomNumber, type;
 			Double price;
 
@@ -390,9 +390,14 @@ public class UserInterfaceClasses
 				{
 					System.out.print("Enter room number: ");
 					roomNumber = CLI.nextLine();
-
+					
 					if( roomNumber.length() > 0 )
-						break;
+					{
+						if( AR.roomExist(roomNumber) || rooms.containsKey(roomNumber) )
+							System.out.println("\nThere is already a room: [" + roomNumber + "]\n");
+						else
+							break;
+					}
 				}
 
 				while(true)
@@ -429,11 +434,11 @@ public class UserInterfaceClasses
 					RT = RoomType.DOUBLE;
 
 				if (price == 0.0)
-					rooms.add( new FreeRoom(roomNumber, RT) );
+					rooms.put( roomNumber, new FreeRoom(roomNumber, RT) );
 				else
-					rooms.add( new Room(roomNumber, price, RT) );
+					rooms.put( roomNumber, new Room(roomNumber, price, RT) );
 				
-				System.out.println( "\n" + rooms.get( rooms.size()-1 ) );
+				System.out.println( "\n" + rooms.get(roomNumber) );
 
 				do {
 				
@@ -448,7 +453,7 @@ public class UserInterfaceClasses
 
 			} while( (ans.toLowerCase().compareTo("yes") == 0) || (ans.toLowerCase().compareTo("y") == 0) );
 
-			AR.addRooms(rooms);
+			AR.addRooms( new ArrayList<IRoom>( rooms.values() ) );
 		}
 		// end addRooms()
 		

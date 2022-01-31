@@ -34,11 +34,18 @@ public class ResourceClasses
 		
 		public boolean isEmailValid(String email)
 		{ 
-			String emailRegex = "^(.+)@(.+).(.+)$";
-			Pattern pattern = Pattern.compile(emailRegex);
-			//boolean match = pattern.matcher(E).matches();
-			
-			return pattern.matcher(email).matches();
+			String eRegX = "^(\\w+)@(\\w+)\\.(\\w+)$"; // name@domain.com
+			Pattern pattern = Pattern.compile(eRegX);
+
+			if( pattern.matcher(email).matches() )
+				return true;
+			else
+			{
+				eRegX = "^(\\w+)@(\\w+)\\.(\\w+)\\.(\\w+)$"; // name@domain.com.uk
+				pattern = Pattern.compile(eRegX);
+				
+				return pattern.matcher(email).matches();
+			}
 		}
 		
 		boolean isLeapYear(int year)

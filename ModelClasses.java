@@ -106,18 +106,31 @@ public class ModelClasses
 	
 		public Customer(String F, String L, String E)
 		{
-			String emailRegex = "^(.+)@(.+).(.+)$";
-			Pattern pattern = Pattern.compile(emailRegex);
+			String eRegX = "^(\\w+)@(\\w+)\\.(\\w+)$";
+			Pattern pattern = Pattern.compile(eRegX);
 			boolean match = pattern.matcher(E).matches();
 		
-			if (match)
+			if (!match)
+			{
+				eRegX = "^(\\w+)@(\\w+)\\.(\\w+)\\.(\\w+)$";
+				pattern = Pattern.compile(eRegX);
+				match = pattern.matcher(E).matches();
+				
+				if(match)
+				{
+					email = E;
+					firstName = F;
+					lastName = L;
+				}
+				else
+					throw new IllegalArgumentException("Invalid Email Format!!");
+			}
+			else
 			{
 				email = E;
 				firstName = F;
 				lastName = L;
 			}
-			else
-				throw new IllegalArgumentException("Invalid Email Format!!");
 		}
 		
 		public String getEmail() { return email; }

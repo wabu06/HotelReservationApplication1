@@ -393,11 +393,18 @@ public class UserInterfaceClasses
 					
 					if( roomNumber.length() > 0 )
 					{
-						if( AR.roomExist(roomNumber) || rooms.containsKey(roomNumber) )
-							System.out.println("\nThere is already a room: [" + roomNumber + "]\n");
+						if( HR.isRoomNumValid(roomNumber) )
+						{
+						
+							if( AR.roomExist(roomNumber) || rooms.containsKey(roomNumber) )
+								System.out.println("\nThere is already a room: [" + roomNumber + "]\n");
+							else
+								break;
+						}
 						else
-							break;
+							System.out.println("\n[" + roomNumber + "] Is Not A Valid Room Number\n");
 					}
+					
 				}
 
 				while(true)
@@ -434,9 +441,9 @@ public class UserInterfaceClasses
 					RT = RoomType.DOUBLE;
 
 				if (price == 0.0)
-					rooms.put( roomNumber, new FreeRoom(roomNumber, RT) );
+					rooms.put( roomNumber, new FreeRoom(roomNumber.toUpperCase(), RT) );
 				else
-					rooms.put( roomNumber, new Room(roomNumber, price, RT) );
+					rooms.put( roomNumber, new Room(roomNumber.toUpperCase(), price, RT) );
 				
 				System.out.println( "\n" + rooms.get(roomNumber) );
 

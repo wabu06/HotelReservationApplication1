@@ -32,6 +32,22 @@ public class ResourceClasses
 			RS = ReservationService.getInstance();
 		}
 		
+		public boolean isRoomNumValid(String rmNum)
+		{
+			String rmRegX = "^\\w{1}\\d+$";
+			Pattern pattern = Pattern.compile(rmRegX);
+			
+			if( pattern.matcher(rmNum).matches() )
+				return true;
+			else
+			{
+				rmRegX = "^\\d+\\w{1}$";
+				pattern = Pattern.compile(rmRegX);
+				
+				return pattern.matcher(rmNum).matches();
+			}
+		}
+		
 		public boolean isEmailValid(String email)
 		{ 
 			String eRegX = "^(\\w+)@(\\w+)\\.(\\w+)$"; // name@domain.com

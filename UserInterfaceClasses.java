@@ -395,7 +395,8 @@ public class UserInterfaceClasses
 					{
 						if( HR.isRoomNumValid(roomNumber) )
 						{
-						
+							roomNumber = roomNumber.toUpperCase();
+							
 							if( AR.roomExist(roomNumber) || rooms.containsKey(roomNumber) )
 								System.out.println("\nThere is already a room: [" + roomNumber + "]\n");
 							else
@@ -441,9 +442,9 @@ public class UserInterfaceClasses
 					RT = RoomType.DOUBLE;
 
 				if (price == 0.0)
-					rooms.put( roomNumber, new FreeRoom(roomNumber.toUpperCase(), RT) );
+					rooms.put( roomNumber, new FreeRoom(roomNumber, RT) );
 				else
-					rooms.put( roomNumber, new Room(roomNumber.toUpperCase(), price, RT) );
+					rooms.put( roomNumber, new Room(roomNumber, price, RT) );
 				
 				System.out.println( "\n" + rooms.get(roomNumber) );
 

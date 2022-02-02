@@ -215,7 +215,7 @@ public class UserInterfaceClasses
 								System.out.println(R + "\n");
 
 							System.out.print("\nPlease select by entering room number from above listing: ");
-							rm = CLI.nextLine();
+							rm = CLI.nextLine(); rm = rm.toUpperCase();
 				
 							for(IRoom R: rooms) // verify that user picked from available rooms
 							{
@@ -405,7 +405,6 @@ public class UserInterfaceClasses
 						else
 							System.out.println("\n[" + roomNumber + "] Is Not A Valid Room Number\n");
 					}
-					
 				}
 
 				while(true)

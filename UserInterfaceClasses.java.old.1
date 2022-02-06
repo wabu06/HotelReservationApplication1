@@ -158,10 +158,9 @@ public class UserInterfaceClasses
 			
 			Date cid, cod; // check IN/OUT dates
 			
-			Calendar cal;
-			
-			HashMap<String, IRoom> rooms;
+			Collection<IRoom> rooms;
 			String rm;
+			boolean valid = false;
 			
 			while(true)
 			{
@@ -199,79 +198,34 @@ public class UserInterfaceClasses
 					
 					if (rooms.size() == 0)
 					{
-						cal = Calendar.getInstance();
+						System.out.println("\nSorry there are no rooms available, ");
+						System.out.print("Would you like try again with different check in/out dates?(Y/n) ");
+						ans = CLI.nextLine();
 						
-						cal.setTime(cid);
-						cal.add(Calendar.DAY_OF_MONTH, 7);
-						cid = cal.getTime();
-						
-						cal.setTime(cod);
-						cal.add(Calendar.DAY_OF_MONTH, 7);
-						cod = cal.getTime();
-						
-						rooms = HR.findARoom(cid, cod);
-						
-						if( rooms.size() > 0 )
-						{
-							System.out.print("\nThere are no rooms available for the check in/out dates entered, ");
-							System.out.println("so the following has been recommended:\n");
-							
-							for(IRoom R: rooms.values() )
-								System.out.println(R + "\n");
-							
-							System.out.print("\nWould like to select from the recommendations?(Y/n) ");
-							ans = CLI.nextLine();
-							
-							if( ans.toLowerCase().equals("n") || ans.toLowerCase().equals("no") )
-							{
-								System.out.print("Would you like try again with different check in/out dates?(Y/n) ");
-								ans = CLI.nextLine();
-								
-								if( ans.toLowerCase().equals("n") || ans.toLowerCase().equals("no") )
-									break;
-								else
-									continue;
-							}
-							
-							System.out.print("\nPlease select by entering a room number from above: ");
-							rm = CLI.nextLine(); rm = rm.toUpperCase();
-							
-							while( !rooms.containsKey(rm) )
-							{
-								for(IRoom R: rooms.values() )
-									System.out.println(R + "\n");
-
-								System.out.print("\nPlease select by entering a room number from above: ");
-								rm = CLI.nextLine(); rm = rm.toUpperCase();
-							} 
-							
-							System.out.println( "\n" + HR.bookARoom(email, HR.getRoom(rm), cid, cod) + "\n");
-							break;
-						}
-						else
-						{
-							System.out.println("\nSorry there are no rooms available, ");
-							System.out.print("Would you like try again with different check in/out dates?(Y/n) ");
-							ans = CLI.nextLine();
-						
-							if( (ans.toLowerCase().compareTo("n") == 0) || (ans.toLowerCase().compareTo("no") == 0) )
-								{ System.out.println("\n"); break; }
-						}
-					}
-					// if room size = 0					
+						if( (ans.toLowerCase().compareTo("n") == 0) || (ans.toLowerCase().compareTo("no") == 0) )
+							{ System.out.println("\n"); break; }
+					}					
 					else
 					{
 						do {
 				
 							System.out.println("\nRooms available are:\n");
 				
-							for(IRoom R: rooms.values() )
+							for(IRoom R: rooms)
 								System.out.println(R + "\n");
 
-							System.out.print("\nPlease select by entering a room number from above: ");
+							System.out.print("\nPlease select by entering room number from above listing: ");
 							rm = CLI.nextLine(); rm = rm.toUpperCase();
 				
-						} while( !rooms.containsKey(rm) );
+							for(IRoom R: rooms) // verify that user picked from available rooms
+							{
+								valid = rm.compareTo( R.getRoomNumber() ) == 0;
+					
+								if (valid)
+									break;
+							}
+				
+						} while(!valid);
 				
 						System.out.println( "\n" + HR.bookARoom(email, HR.getRoom(rm), cid, cod) + "\n");
 						break; 

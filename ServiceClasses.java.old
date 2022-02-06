@@ -100,9 +100,9 @@ public class ServiceClasses
 			return R;
 		}
 		
-		public HashMap<String, IRoom> findRooms(Date checkInDate, Date checkOutDate)
+		public Collection<IRoom> findRooms(Date checkInDate, Date checkOutDate)
 		{ 
-			HashMap<String, IRoom> rooms = new HashMap<String, IRoom>();
+			ArrayList<IRoom> rooms = new ArrayList<IRoom>();
 			
 			Date cid, cod;
 			
@@ -124,10 +124,10 @@ public class ServiceClasses
 					}
 					
 					if(vacant)
-						rooms.put( rm.getRoomNumber(), rm );
+						rooms.add(rm);
 				}
 				else
-					rooms.put( rm.getRoomNumber(), rm );
+					rooms.add(rm);
 			}
 			
 			return rooms;

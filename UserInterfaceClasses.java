@@ -337,7 +337,7 @@ public class UserInterfaceClasses
 				
 					case 3:
 						AR.displayAllReservations();
-						System.out.println("\n");
+						//System.out.println("\n");
 					break;
 				
 					case 4:

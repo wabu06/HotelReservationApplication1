@@ -32,9 +32,9 @@ public class ModelClasses
 
 	public static class Room implements IRoom
 	{
-		protected String roomNumber;
-		protected Double price;
-		protected RoomType type;
+		/* protected */ String roomNumber;
+		/* protected */ Double price;
+		/* protected */ RoomType type;
 		
 		ArrayList<Reservation> RoomReservations; // Reservations for the room
 	
@@ -76,8 +76,26 @@ public class ModelClasses
 		
 			return RmStr;
 		}
+		
+		@Override 
+		public boolean equals(Object O)
+		{
+			if (O == this)
+				return true;
+			
+			if( !(O instanceof Room) )
+				return false;
+		
+			Room R = (Room) O;
+			
+			return roomNumber.equals(R.roomNumber) && price.equals(R.price) && (type == R.type) && RoomReservations.equals(R.RoomReservations);
+		}
+		
+		@Override
+		public int hashCode()
+			{ return Objects.hash(roomNumber, price, type, RoomReservations); }
 	}
-
+	// end Room Class
 
 	public static class FreeRoom extends Room
 	{
@@ -95,14 +113,32 @@ public class ModelClasses
 		
 			return RmStr;
 		}
+		
+		@Override 
+		public boolean equals(Object O)
+		{
+			if (O == this)
+				return true;
+			
+			if( !(O instanceof FreeRoom) )
+				return false;
+		
+			FreeRoom R = (FreeRoom) O;
+			
+			return roomNumber.equals(R.roomNumber) && price.equals(R.price) && (type == R.type) && RoomReservations.equals(R.RoomReservations);
+		}
+		
+		@Override
+		public int hashCode()
+			{ return Objects.hash(roomNumber, price, type, RoomReservations); }
 	}
-
+	// end FreeRoom Class
 
 	public static class Customer
 	{
-		String firstName;
-		String lastName;
-		String email;
+		private String firstName;
+		private String lastName;
+		private String email;
 	
 		public Customer(String F, String L, String E)
 		{
@@ -137,15 +173,33 @@ public class ModelClasses
 	
 		@Override 
 		public String toString() { return "Customer Name: " + firstName + " " + lastName + "\nCustomer Email: " + email; }
+		
+		@Override 
+		public boolean equals(Object O)
+		{
+			if (O == this)
+				return true;
+			
+			if( !(O instanceof Customer) )
+				return false;
+		
+			Customer C = (Customer) O;
+			
+			return firstName.equals(C.firstName) && lastName.equals(C.lastName) &&  email.equals(C.email);
+		}
+		
+		@Override
+		public int hashCode()
+			{ return Objects.hash(firstName, lastName, email); }
 	}
-
+	// end of Customer Class
 
 	public static class Reservation
 	{
-		Customer customer;
-		IRoom room;
-		Date checkInDate;
-		Date checkOutDate;
+		private Customer customer;
+		private IRoom room;
+		private Date checkInDate;
+		private Date checkOutDate;
 	
 		public Reservation(Customer C, IRoom R, Date cid, Date cod)
 		{
@@ -164,5 +218,24 @@ public class ModelClasses
 			String resStr = customer.toString() + "\n" + room.toString() + "\nCheck In Date: ";
 			return resStr + checkInDate.toString() + "\nCheck Out Date: " + checkOutDate.toString();
 		}
+		
+		@Override 
+		public boolean equals(Object O)
+		{
+			if (O == this)
+				return true;
+			
+			if( !(O instanceof Reservation) )
+				return false;
+		
+			Reservation R = (Reservation) O;
+			
+			return customer.equals(R.customer) && room.equals(R.room) && checkInDate.equals(R.checkInDate) && checkOutDate.equals(R.checkOutDate);
+		}
+		
+		@Override
+		public int hashCode()
+			{ return Objects.hash(customer, room, checkInDate, checkOutDate); }
 	}
+	// end of Reservation Class
 }

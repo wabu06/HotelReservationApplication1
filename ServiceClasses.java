@@ -139,7 +139,7 @@ public class ServiceClasses
 		public void printAllReservations()
 		{
 			if (ReservationMap.size() == 0)
-				System.out.print("\nThere Are No Reservations To Display");
+				System.out.println("\nThere Are No Reservations To Display\n");
 			else
 			{
 				for(ArrayList<Reservation> RA: ReservationMap.values() )
@@ -148,6 +148,8 @@ public class ServiceClasses
 						System.out.println("\n" + R + "\n");
 				}
 			}
+			
+			System.out.println();
 		}
 	 }
 }

@@ -53,5 +53,11 @@ public class HotelReservationTester
 		System.out.println( "\n" + CS.getCustomer("007@MI6.mil.uk") );
 		
 		ReservationService RS = ReservationService.getInstance();
+		
+		System.out.println();
+		
+		System.out.println( customer.equals( new Customer("Micheal", "Burnam", "mburnam@discovery.mil") ) );
+		
+		System.out.println( customer.equals( new Customer("James", "Bond", "007@MI6.mil.uk") ) );
 	}
 }

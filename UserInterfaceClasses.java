@@ -214,12 +214,12 @@ public class UserInterfaceClasses
 						if( rooms.size() > 0 )
 						{
 							System.out.print("\nThere are no rooms available for the check in/out dates entered, ");
-							System.out.println("so the following has been recommended:\n");
+							System.out.println("so the following is being recommended:\n");
 							
 							for(IRoom R: rooms.values() )
 								System.out.println(R + "\n");
 							
-							System.out.print("\nWould like to select from the recommendations?(Y/n) ");
+							System.out.print("\nWould you like to select from the recommendations?(Y/n) ");
 							ans = CLI.nextLine();
 							
 							if( ans.toLowerCase().equals("n") || ans.toLowerCase().equals("no") )
@@ -238,6 +238,8 @@ public class UserInterfaceClasses
 							
 							while( !rooms.containsKey(rm) )
 							{
+								System.out.println("\n[" + rm + "] is not a valid choice, the rooms available are as follows:\n");
+
 								for(IRoom R: rooms.values() )
 									System.out.println(R + "\n");
 

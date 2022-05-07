@@ -108,10 +108,10 @@ public class UserInterfaceClasses
 				System.out.println("\nYou Have No Reservations\n");
 			else
 			{ 
-				System.out.println("\nYour Reservations Are:\n");
+				//System.out.println("\nYour Reservations Are:\n");
 			
 				for(Reservation R:  reserves)
-					System.out.println(R + "\n");
+					System.out.println("\n" + R + "\n");
 			}
 		}
 
@@ -143,8 +143,17 @@ public class UserInterfaceClasses
 				C = createAccount(email);
 			else
 			{
-				System.out.print("\nAn account was found for the email entered:\n\n" + C + "\n\nPlease confirm(Y/n) ");
-				ans = CLI.nextLine();
+				System.out.println("\nAn account was found for the email entered:\n\n" + C);
+				
+				do{
+				
+					System.out.print("\n\nPlease confirm(Y/n) ");
+					ans = CLI.nextLine();
+					
+					if( ans.equals("") )
+						break;
+
+				} while( !( ans.toLowerCase().equals("y") || ans.toLowerCase().equals("n") ) );
 				
 				if (ans.toLowerCase().compareTo("n") == 0)
 				{
@@ -228,7 +237,7 @@ public class UserInterfaceClasses
 								ans = CLI.nextLine();
 								
 								if( ans.toLowerCase().equals("n") || ans.toLowerCase().equals("no") )
-									break;
+									{ System.out.println("\n"); break; }
 								else
 									continue;
 							}
@@ -413,7 +422,7 @@ public class UserInterfaceClasses
 				System.out.println("\nThere Are No Rooms To Display\n");
 			else
 			{
-				System.out.println("\nHotel Rooms Listing");
+				//System.out.println("\nHotel Rooms Listing");
 
 				for(IRoom R: rooms)
 					System.out.println("\n" + R + "\n");

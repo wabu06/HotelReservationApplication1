@@ -32,9 +32,9 @@ public class ModelClasses
 
 	public static class Room implements IRoom
 	{
-		/* protected */ String roomNumber;
+		/* protected */ final String roomNumber;
 		/* protected */ Double price;
-		/* protected */ RoomType type;
+		/* protected */ final RoomType type;
 		
 		ArrayList<Reservation> RoomReservations; // Reservations for the room
 	

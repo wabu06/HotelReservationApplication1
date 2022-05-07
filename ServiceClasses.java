@@ -136,7 +136,10 @@ public class ServiceClasses
 		public Collection<Reservation> getCustomersReservation(Customer customer)
 			{ return ReservationMap.get( customer.getEmail() ); }
 		
-		public void printAllReservations()
+		Collection<Reservation> getRoomReservations(IRoom room)
+			{ return room.getReservations(); }
+		
+		public  void printAllReservations()
 		{
 			if (ReservationMap.size() == 0)
 				System.out.println("\nThere Are No Reservations To Display\n");
